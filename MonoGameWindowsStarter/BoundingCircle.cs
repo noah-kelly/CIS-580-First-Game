@@ -12,19 +12,17 @@ namespace MonoGameWindowsStarter
         public float X;
         public float Y;
         public float Radius;
-        public Vector2 Center {
-            get => new Vector2(X, Y);
-            set {
-                X = value.X;
-                Y = value.Y;
-            }
-        }
 
-        public BoundingCircle(float x, float y, float r)
+
+        // Casts circle into a rectangle
+        public static implicit operator Rectangle(BoundingCircle c)
         {
-            this.X = x;
-            this.Y = y;
-            this.Radius = r;
+            return new Rectangle(
+                (int)(c.X - c.Radius),
+                (int)(c.Y - c.Radius),
+                (int)(2 * c.Radius),
+                (int)(2 * c.Radius)
+                );
         }
     }
 }
